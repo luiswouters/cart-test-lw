@@ -1,0 +1,35 @@
+{
+  "name": "cart-test-lw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "browser-sync start --directory --server --files '*.js, *.html, *.css'",
+    "babel": "babel app.js --watch --out-file app-compile.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luiswouters/cart-test-lw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luiswouters/cart-test-lw/issues"
+  },
+  "homepage": "https://github.com/luiswouters/cart-test-lw#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/preset-env": "^7.0.0-beta.32",
+    "ajv": "^5.5.0",
+    "babel-core": "^7.0.0-beta.3",
+    "babel-loader": "^7.1.2",
+    "browser-sync": "^2.18.13",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

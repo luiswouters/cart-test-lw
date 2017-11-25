@@ -1,16 +1,24 @@
 const webpack = require('webpack');
 const nodeEnv = process.env.NODE_ENV || 'production';
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var sassLintPlugin = require('sasslint-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
   entry: {
-    filename: './app.js'
+    filename: ['./app.js','./scss/main.scss']
   },
   output: {
     filename: '_build/bundle.js'
   },
   module: {
     rules: [
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -26,6 +34,26 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: [
+          {
+            loader: 'css-loader?importLoaders=1',
+            options: {
+              sourceMap: true
+            }
+          }]
+        // publicPath: "/assets" // Overrides output.publicPath
+        })
+      },
+      { // sass / scss loader for webpack
+        test: /\.(sass|scss)$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
       }
     ]
   },
@@ -41,6 +69,13 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+    }),
+    new ExtractTextPlugin({ // define where to save the file
+      filename: 'dist/style.css',
+      allChunks: true,
+    }),
+    new sassLintPlugin({
+      glob: 'scss/**/*.s+(a|c)ss'
     })
   ]
 };

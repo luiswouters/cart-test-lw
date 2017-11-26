@@ -1,4 +1,296 @@
-#oi{
-	height: 25px;
-	color: blue;
+$default-font-family: 'Open Sans', sans-serif;
+$default-font-family-bold: 700;
+$default-font-family-light: 300;
+$default-font-family-semibold: 600;
+$default-font-icon: 'icomoon';
+$default-component-bg-color: #FFF;
+$default-component-bg-color-negative: #202025;
+$default-component-bg-color-negative-darker: #131316;
+
+$colors-yellow: #DFBD00;
+$colors-light: #CCC;
+$colors-dark: #191919;
+$color-negative: #FFF;
+$colors-darkest: #000;
+
+$icon-bag-chars: '\e900';
+$icon-cross-chars: '\ea0f';
+
+//For visualization purpose
+body{
+	background-color: #666;
+	z-index: 0;
+	.products-list{
+		margin: auto;
+	}
+	.products-list{
+		z-index: 1;
+	}
+}
+
+//Common
+
+%clearfix {
+	clear: both;
+	content: '';
+	display: block;
+}
+
+//Font-face
+@font-face{
+	font-family: $default-font-icon;
+	font-style: normal;
+	font-weight: normal;
+	src: url('/assets/fonts/icomoon/fonts/icomoon.eot?aqyx2j');
+	src: url('/assets/fonts/icomoon/fonts/icomoon.eot?aqyx2j#iefix') format('embedded-opentype'),
+	url('/assets/fonts/icomoon/fonts/icomoon.ttf?aqyx2j') format('truetype'),
+	url('/assets/fonts/icomoon/fonts/icomoon.woff?aqyx2j') format('woff'),
+	url('/assets/fonts/icomoon/fonts/icomoon.svg?aqyx2j#icomoon') format('svg');
+}
+
+//Modules layouts
+.products-cart{
+	background-color: $default-component-bg-color-negative;
+	color: $color-negative;
+	font-family: $default-font-family;
+	height: 100%;
+	overflow: auto;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 515px;
+	z-index: 2;
+	&.closed{
+		right: -100%;
+	}
+	.cart-header{
+		line-height: 50px;
+		padding: 45px 0;
+		text-align: center;
+		vertical-align: middle;
+		.bag-icon,
+		.header-title{
+			display: inline-block;
+		}
+		.bag-icon{
+			color: $colors-light;
+			font-family: $default-font-icon !important;
+			font-size: 50px;
+			position: relative;
+			&:before{
+				content: $icon-bag-chars;
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+		.header-title{
+			font-size: 24px;
+			font-weight: $default-font-family-bold;
+			margin: 0 0 0 20px;
+			text-transform: uppercase;
+		}
+		.cart-info-products-added{
+			background-color: $colors-yellow;
+			border-radius: 50%;
+			bottom: -6px;
+			color: $colors-dark;
+			display: block;
+			font-family: $default-font-family;
+			font-size: 12px;
+			font-weight: $default-font-family-bold;
+			height: 19px;
+			line-height: 19px;
+			margin: 0;
+			position: absolute;
+			right: -6px;
+			text-align: center;
+			width: 19px;
+		}
+	}
+	.cart-itens-list{
+		.cart-list-item{
+			position: relative;
+			&:hover{
+				background-color: $default-component-bg-color-negative-darker;
+				.cart-item-exclude-button{
+					color: $colors-light!important;
+				}
+			}
+			&:after{
+				@extend %clearfix;
+			}
+			&:before{
+				background-color: $colors-dark;
+				content: '';
+				display: block;
+				height: 2px;
+				margin: 0 23px;
+			}
+			&.excluded{
+				background-color: $default-component-bg-color-negative-darker;
+				.cart-item-exclude-button{
+					color: $colors-light!important;
+				}
+				.item-image{
+					img{
+						opacity: 0.5;
+					}
+				}
+				.info-title, 
+				.info-description-line-1,
+				.info-description-line-2{
+					opacity: 0.5;
+					text-decoration: line-through;
+				}
+
+			}
+			&:last-child{
+				&:after{
+					background-color: $colors-dark;
+					content: '';
+					display: block;
+					height: 2px;
+					margin: 0 25px;
+				}	
+			}
+			.item-image{
+				float: left;
+				margin: 23px;
+				width: 50px;
+			}
+			.item-info{
+				float: left;
+				margin: 23px 23px 23px 0;
+				.info-title{
+					font-size: 14px;
+					font-weight: $default-font-family-semibold;
+				}
+				.info-description-line-1,
+				.info-description-line-2{
+					color: $colors-light;
+					font-size: 12px;
+					font-weight: $default-font-family-light;	
+				}
+				.info-price{
+					bottom: 23px;
+					color: $colors-yellow;
+					font-size: 12px;
+					position: absolute;
+					right: 23px;
+					.value{
+						font-weight: $default-font-family-bold;		
+					}
+				}
+				.cart-item-exclude-button{
+					color: $colors-darkest;
+					font-family: $default-font-icon !important;
+					font-size: 0;
+					height: 14px;
+					line-height: 14px;
+					position: absolute;
+					right:23px;
+					text-align: center;
+					text-decoration: none;
+					top:23px;
+					width: 14px;
+					&:before{
+						content: $icon-cross-chars;
+						display: inline-block;
+						font-size: 14px;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+	}
+	.cart-summary{
+		padding: 35px 23px;
+		&:after{
+			@extend %clearfix;
+		}
+		.summary-title{
+			float: left;
+			font-size: 14px;
+			margin: 0;
+			text-transform: uppercase;
+		}
+		.summary-values-holder{
+			display: inline-block;
+			float: right;
+			.summary-total{
+				color: $colors-yellow;
+				font-size: 24px;
+				margin: 0;
+				text-align: right;
+				.value{
+					font-weight: $default-font-family-bold;
+				}
+			}
+			.summary-installments{
+				font-size: 12px;
+				margin: 0;
+			}
+		}
+	}
+	.cart-conclude-button{
+		background-color: $colors-darkest;
+		color: $colors-light;
+		display: block;
+		font-size: 14px;
+		font-weight: $default-font-family-bold;
+		margin: 0 23px;
+		padding: 15px 0;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+}
+
+.products-list{
+	background-color: $default-component-bg-color;
+	color: $colors-dark;
+	font-family: $default-font-family;
+	padding-top: 78px;
+	position: relative;
+	width: 730px;
+	z-index: inherit;
+	&::after{
+		@extend %clearfix;
+	}
+	.products-list-item{
+		float: left;
+		margin-top: 30px;
+		padding: 0 15px 20px;
+		text-align: center;
+		width:213px;
+		.item-image{
+			text-align: center;
+		}
+		.info-title{
+			font-size: 14px;
+			margin: 10px 0 0;
+			&:after{
+				background-color: $colors-yellow;
+				content: '';
+				display: block;
+				height: 2px;
+				margin: 10px auto 0;
+				width: 15px;
+			}
+		}
+		.info-price{
+			font-size: 24px;
+			font-weight: $default-font-family-bold;
+			line-height: 24px;
+			margin: 7px 0 0;
+			.currency{
+				font-size: 12px;
+			}
+		}
+		.info-installments{
+			color: $colors-light;
+			font-size: 14px;
+			margin: 5px 0 0;
+		}
+	}
 }

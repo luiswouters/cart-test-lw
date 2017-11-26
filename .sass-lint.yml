@@ -16,6 +16,7 @@ files:
   include: 'scss/**/*.s+(a|c)ss'
   ignore:
     - 'scss/vendor/**/*.*'
+    - 'assets/fonts/*'
 # Rule Configuration
 rules:
   extends-before-mixins: 2
@@ -31,7 +32,7 @@ rules:
   no-warn: 1
   no-debug: 1
   no-ids: 0
-  no-important: 2
+  no-important: 0
   hex-notation:
     - 2
     -
@@ -43,13 +44,9 @@ rules:
   property-sort-order:
     - 1
     -
-      order:
-        - display
-        - margin
       ignore-custom-properties: true
   variable-for-property:
     - 2
     -
       properties:
-        - margin
-        - content
+        - font-family

@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const nodeEnv = process.env.NODE_ENV || 'production';
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var sassLintPlugin = require('sasslint-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -58,7 +59,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
+    /*new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
@@ -66,6 +67,13 @@ module.exports = {
         comments: false
       },
       sourceMap: true
+    }),*/
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false
+        }
+      }
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }

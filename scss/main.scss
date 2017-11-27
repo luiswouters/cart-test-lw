@@ -250,18 +250,18 @@ body{
 	background-color: $default-component-bg-color;
 	color: $colors-dark;
 	font-family: $default-font-family;
+	line-height: 100%;
 	padding-top: 78px;
 	position: relative;
 	width: 730px;
 	z-index: inherit;
-	&::after{
-		@extend %clearfix;
-	}
 	.products-list-item{
-		float: left;
+		cursor: pointer;
+		display: inline-block;
 		margin-top: 30px;
 		padding: 0 15px 20px;
 		text-align: center;
+		vertical-align: top;
 		width:213px;
 		.item-image{
 			text-align: center;

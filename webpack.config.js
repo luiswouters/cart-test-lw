@@ -29,10 +29,11 @@ module.exports = {
             presets: [
               ["@babel/preset-env", {
                 "targets": {
-                  "browsers": ["last 2 versions"]
+                  "browsers": ["last 2 versions", "Explorer 11"]
                 }
               }]
-            ]
+            ],
+            plugins: [require('babel-plugin-transform-es2015-typeof-symbol'),require('babel-plugin-es6-promise')]
           }
         }
       },
@@ -72,13 +73,13 @@ module.exports = {
       },
       sourceMap: true
     }),*/
-    new UglifyJsPlugin({
+    /*new UglifyJsPlugin({
       uglifyOptions: {
         output: {
           comments: false
         }
       }
-    }),
+    }),*/
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),

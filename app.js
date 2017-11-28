@@ -5,10 +5,6 @@ import "dom-shims/shim/Element.closest";
 import "dom-shims/shim/Element.matches";
 import "dom-shims/shim/Element.mutation";
 
-function helloWorld() {
-	return 'Hello world!';
-}
-
 class CartModule {
 	constructor(cart, list, el, cb) {
 		this.cart = cart;
@@ -187,10 +183,6 @@ class CartModule {
 
 		const cartInfoTotalInstallments = document.querySelector('.cart-info-total-installments');
 		cartInfoTotalInstallments.innerHTML = installments;
-	}
-
-	completePurchase() {
-		console.log(this);
 	}
 
 	storeProductsLocal() {

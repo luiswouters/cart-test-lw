@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "browser-sync start --directory --server --files '*.js, *.html, *.css'",
-    "serverw": "webpack && webpack-dev-server --host 0.0.0.0 --port 9000",
+    "server": "webpack && webpack-dev-server --port 9000",
     "babel": "babel app.js --watch --out-file app-compile.js",
     "build": "webpack",
-    "server:watch": "webpack-dev-server --host 0.0.0.0 --port 9000 --watch-pol",
     "test": "jasmine"
   },
   "repository": {

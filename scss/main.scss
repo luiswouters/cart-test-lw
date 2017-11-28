@@ -50,199 +50,225 @@ body{
 
 //Modules layouts
 .products-cart{
-	background-color: $default-component-bg-color-negative;
-	color: $color-negative;
-	font-family: $default-font-family;
 	height: 100%;
-	overflow: auto;
 	position: fixed;
 	right: 0;
 	top: 0;
-	width: 515px;
+	width: 100%;
 	z-index: 2;
 	&.closed{
 		right: -100%;
+		.products-cart-wrapper{
+			right: -100%;
+		}
 	}
-	.cart-header{
-		line-height: 50px;
-		padding: 45px 0;
-		text-align: center;
-		vertical-align: middle;
-		.bag-icon,
-		.header-title{
-			display: inline-block;
-		}
-		.bag-icon{
-			color: $colors-light;
-			font-family: $default-font-icon !important;
-			font-size: 50px;
-			position: relative;
-			&:before{
-				content: $icon-bag-chars;
-				display: inline-block;
-				vertical-align: middle;
-			}
-		}
-		.header-title{
-			font-size: 24px;
-			font-weight: $default-font-family-bold;
-			margin: 0 0 0 20px;
-			text-transform: uppercase;
-		}
-		.cart-info-products-added{
-			background-color: $colors-yellow;
-			border-radius: 50%;
-			bottom: -6px;
-			color: $colors-dark;
-			display: block;
-			font-family: $default-font-family;
-			font-size: 12px;
-			font-weight: $default-font-family-bold;
-			height: 19px;
-			line-height: 19px;
-			margin: 0;
-			position: absolute;
-			right: -6px;
+	.cart-close{
+		cursor: default;
+		font-size: 0;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+		z-index: 1;
+	}
+	.products-cart-wrapper{
+		background-color: $default-component-bg-color-negative;
+		color: $color-negative;
+		font-family: $default-font-family;
+		height: 100%;
+		overflow: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition:all 1s linear;
+		width: 515px;
+		z-index: 2;
+		.cart-header{
+			line-height: 50px;
+			padding: 45px 0;
 			text-align: center;
-			width: 19px;
-		}
-	}
-	.cart-itens-list{
-		.cart-list-item{
-			position: relative;
-			&:hover{
-				background-color: $default-component-bg-color-negative-darker;
-				.cart-item-exclude-button{
-					color: $colors-light!important;
+			vertical-align: middle;
+			.bag-icon,
+			.header-title{
+				display: inline-block;
+			}
+			.bag-icon{
+				color: $colors-light;
+				font-family: $default-font-icon !important;
+				font-size: 50px;
+				position: relative;
+				&:before{
+					content: $icon-bag-chars;
+					display: inline-block;
+					vertical-align: middle;
 				}
 			}
-			&:after{
-				@extend %clearfix;
+			.header-title{
+				font-size: 24px;
+				font-weight: $default-font-family-bold;
+				margin: 0 0 0 20px;
+				text-transform: uppercase;
 			}
-			&:before{
-				background-color: $colors-dark;
-				content: '';
+			.cart-info-products-added{
+				background-color: $colors-yellow;
+				border-radius: 50%;
+				bottom: -6px;
+				color: $colors-dark;
 				display: block;
-				height: 2px;
-				margin: 0 23px;
+				font-family: $default-font-family;
+				font-size: 12px;
+				font-weight: $default-font-family-bold;
+				height: 19px;
+				line-height: 19px;
+				margin: 0;
+				position: absolute;
+				right: -6px;
+				text-align: center;
+				width: 19px;
 			}
-			&.excluded{
-				background-color: $default-component-bg-color-negative-darker;
-				.cart-item-exclude-button{
-					color: $colors-light!important;
-				}
-				.item-image{
-					img{
-						opacity: 0.5;
+		}
+		.cart-itens-list{
+			.cart-list-item{
+				opacity: 1;
+				position: relative;
+				transition: all 0s linear 0.33s, opacity 0.33s linear;
+				visibility: visible;
+				&:hover{
+					background-color: $default-component-bg-color-negative-darker;
+					.cart-item-exclude-button{
+						color: $colors-light!important;
 					}
 				}
-				.info-title, 
-				.info-description-line-1,
-				.info-description-line-2{
-					opacity: 0.5;
-					text-decoration: line-through;
-				}
-
-			}
-			&:last-child{
 				&:after{
+					@extend %clearfix;
+				}
+				&:before{
 					background-color: $colors-dark;
 					content: '';
 					display: block;
 					height: 2px;
-					margin: 0 25px;
-				}	
-			}
-			.item-image{
-				float: left;
-				margin: 23px;
-				width: 50px;
-			}
-			.item-info{
-				float: left;
-				margin: 23px 23px 23px 0;
-				.info-title{
-					font-size: 14px;
-					font-weight: $default-font-family-semibold;
+					margin: 0 23px;
 				}
-				.info-description-line-1,
-				.info-description-line-2{
-					color: $colors-light;
-					font-size: 12px;
-					font-weight: $default-font-family-light;	
-				}
-				.info-price{
-					bottom: 23px;
-					color: $colors-yellow;
-					font-size: 12px;
-					position: absolute;
-					right: 23px;
-					.value{
-						font-weight: $default-font-family-bold;		
+				&.excluded{
+					background-color: $default-component-bg-color-negative-darker;
+					opacity: 0;
+					visibility: hidden;
+					.cart-item-exclude-button{
+						color: $colors-light!important;
 					}
+					.item-image{
+						img{
+							opacity: 0.5;
+						}
+					}
+					.info-title, 
+					.info-description-line-1,
+					.info-description-line-2{
+						opacity: 0.5;
+						text-decoration: line-through;
+					}
+
 				}
-				.cart-item-exclude-button{
-					color: $colors-darkest;
-					font-family: $default-font-icon !important;
-					font-size: 0;
-					height: 14px;
-					line-height: 14px;
-					position: absolute;
-					right:23px;
-					text-align: center;
-					text-decoration: none;
-					top:23px;
-					width: 14px;
-					&:before{
-						content: $icon-cross-chars;
-						display: inline-block;
+				&:last-child{
+					&:after{
+						background-color: $colors-dark;
+						content: '';
+						display: block;
+						height: 2px;
+						margin: 0 25px;
+					}	
+				}
+				.item-image{
+					float: left;
+					margin: 23px;
+					width: 50px;
+				}
+				.item-info{
+					float: left;
+					margin: 23px 23px 23px 0;
+					.info-title{
 						font-size: 14px;
-						vertical-align: middle;
+						font-weight: $default-font-family-semibold;
+					}
+					.info-description-line-1,
+					.info-description-line-2{
+						color: $colors-light;
+						font-size: 12px;
+						font-weight: $default-font-family-light;	
+					}
+					.info-price{
+						bottom: 23px;
+						color: $colors-yellow;
+						font-size: 12px;
+						position: absolute;
+						right: 23px;
+						.value{
+							font-weight: $default-font-family-bold;		
+						}
+					}
+					.cart-item-exclude-button{
+						color: $colors-darkest;
+						font-family: $default-font-icon !important;
+						font-size: 0;
+						height: 14px;
+						line-height: 14px;
+						position: absolute;
+						right:23px;
+						text-align: center;
+						text-decoration: none;
+						top:23px;
+						width: 14px;
+						&:before{
+							content: $icon-cross-chars;
+							display: inline-block;
+							font-size: 14px;
+							vertical-align: middle;
+						}
 					}
 				}
 			}
 		}
-	}
-	.cart-summary{
-		padding: 35px 23px;
-		&:after{
-			@extend %clearfix;
+		.cart-summary{
+			padding: 35px 23px;
+			transition:all 1s linear;
+			&:after{
+				@extend %clearfix;
+			}
+			.summary-title{
+				float: left;
+				font-size: 14px;
+				margin: 0;
+				text-transform: uppercase;
+			}
+			.summary-values-holder{
+				display: inline-block;
+				float: right;
+				.summary-total{
+					color: $colors-yellow;
+					font-size: 24px;
+					margin: 0;
+					text-align: right;
+					.value{
+						font-weight: $default-font-family-bold;
+					}
+				}
+				.summary-installments{
+					font-size: 12px;
+					margin: 0;
+				}
+			}
 		}
-		.summary-title{
-			float: left;
+		.cart-conclude-button{
+			background-color: $colors-darkest;
+			color: $colors-light;
+			display: block;
 			font-size: 14px;
-			margin: 0;
+			font-weight: $default-font-family-bold;
+			margin: 0 23px;
+			padding: 15px 0;
+			text-align: center;
+			text-decoration: none;
 			text-transform: uppercase;
 		}
-		.summary-values-holder{
-			display: inline-block;
-			float: right;
-			.summary-total{
-				color: $colors-yellow;
-				font-size: 24px;
-				margin: 0;
-				text-align: right;
-				.value{
-					font-weight: $default-font-family-bold;
-				}
-			}
-			.summary-installments{
-				font-size: 12px;
-				margin: 0;
-			}
-		}
-	}
-	.cart-conclude-button{
-		background-color: $colors-darkest;
-		color: $colors-light;
-		display: block;
-		font-size: 14px;
-		font-weight: $default-font-family-bold;
-		margin: 0 23px;
-		padding: 15px 0;
-		text-align: center;
-		text-decoration: none;
-		text-transform: uppercase;
 	}
 }
 

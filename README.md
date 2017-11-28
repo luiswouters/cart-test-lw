@@ -47,3 +47,9 @@ In the Terminal/Bash:
 * As there wasn't an input for size, the size was fixed in 'GGG', but the function waits for a size;
 * Jasmine was added to the project, for testing purpose, but no rules were written because of the short time;
 * Next steps are refactoring the code and adding Jasmine to the flow;
+
+## Online fallback
+
+If there's any error running the projet locally, it has an online version available:
+
+http://www.luiswouters.com.br/cart-test-lw/
